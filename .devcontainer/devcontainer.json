@@ -11,7 +11,8 @@
         "vscode": {
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
-                "mike-lischke.vscode-antlr4"
+                "mike-lischke.vscode-antlr4",
+                "mhutchie.git-graph"
             ]
         }
     }
