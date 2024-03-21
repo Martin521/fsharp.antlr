@@ -1,0 +1,5 @@
+# This is called after the container is first created
+curl --output-dir /usr/local/lib -O https://www.antlr.org/download/antlr-4.13.1-complete.jar
+echo "export CLASSPATH='.:/usr/local/lib/antlr-4.13.1-complete.jar:$CLASSPATH'" >> ~/.bashrc
+echo "alias antlr4='java -Xmx500M org.antlr.v4.Tool'" >> ~/.bashrc
+echo "alias grun='java -Xmx500M org.antlr.v4.gui.TestRig'" >> ~/.bashrc
