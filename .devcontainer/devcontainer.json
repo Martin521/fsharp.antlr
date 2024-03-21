@@ -1,4 +1,4 @@
-// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json:
 {
     "name": "fsharp.antlr",
     "image": "mcr.microsoft.com/dotnet/sdk:8.0",
@@ -15,5 +15,11 @@
                 "mhutchie.git-graph"
             ]
         }
-    }
+    },
+    "remoteEnv": {
+        "CLASSPATH": ".:/usr/local/lib/antlr-4.13.1-complete.jar:${containerEnv:CLASSPATH}"
+    },
+    "onCreateCommand": [
+        "curl --output-dir /usr/local/lib -O https://www.antlr.org/download/antlr-4.13.1-complete.jar"
+    ]
 }
