@@ -19,7 +19,5 @@
     "remoteEnv": {
         "CLASSPATH": ".:/usr/local/lib/antlr-4.13.1-complete.jar:${containerEnv:CLASSPATH}"
     },
-    "postCreateCommand": [
-        "echo this is a test"
-    ]
+    "postCreateCommand": "curl --output-dir /usr/local/lib -O https://www.antlr.org/download/antlr-4.13.1-complete.jar"
 }
