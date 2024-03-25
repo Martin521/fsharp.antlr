@@ -15,16 +15,7 @@
                 "mhutchie.git-graph",
                 "Ionide.Ionide-fsharp",
                 "tintoy.msbuild-project-tools"
-            ],
-            // "settings": {
-            //     "dotnetAcquisitionExtension.existingDotnetPath": [
-            //         {
-            //             "extensionId": "tintoy.msbuild-project-tools",
-            //             "path": "/usr/share/dotnet/dotnet"
-            //         }
-            //     ]            
-            // }
+            ]
         }
-    },
-    "postCreateCommand": "./finishContainerCreate"
+    }
 }
