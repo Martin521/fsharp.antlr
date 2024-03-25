@@ -5,7 +5,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Antlr4 Include="FSharp.g4">
+    <Antlr4 Include="../Grammar/FSharp.g4">
       <Package>Parser</Package>
     </Antlr4>
   </ItemGroup>
