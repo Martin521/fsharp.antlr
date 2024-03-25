@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <OutputType>exe</OutputType>
     <RootNamespace>AntlrTemplate</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
-    <Antlr4 Include="Arithmetic.g4">
+    <Antlr4 Include="FSharp.g4">
       <Package>Parser</Package>
     </Antlr4>
   </ItemGroup>
