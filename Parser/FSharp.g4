@@ -24,7 +24,7 @@ POW : '^' ;
 SEMI : ';' ;
 WS : [ \r\n\t] + -> channel(HIDDEN) ;
 
-fragment VALID_ID_START : ('a' .. 'z') | ('A' .. 'Y') | '_' ;
+fragment VALID_ID_START : ('a' .. 'z') | ('A' .. 'Z') | '_' ;
 fragment VALID_ID_CHAR : VALID_ID_START | ('0' .. '9') ;
 fragment NUMBER : ('0' .. '9') + ('.' ('0' .. '9') +)? ;
 fragment UNSIGNED_INTEGER : ('0' .. '9')+ ;
