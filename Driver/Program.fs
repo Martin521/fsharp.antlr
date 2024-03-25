@@ -15,9 +15,9 @@ type ErrorListener<'T>() =
 let Try (input: string) =
     let str = new AntlrInputStream(input)
     System.Console.WriteLine(input)
-    let lexer = new ArithmeticLexer(str)
+    let lexer = new FSharpLexer(str)
     let tokens = new CommonTokenStream(lexer)
-    let parser = new ArithmeticParser(tokens)
+    let parser = new FSharpParser(tokens)
     let listener_lexer = new ErrorListener<int>()
     let listener_parser = new ErrorListener<IToken>()
     lexer.RemoveErrorListeners()
