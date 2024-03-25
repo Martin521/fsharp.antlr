@@ -31,6 +31,4 @@ let Try (input: string) =
         System.Console.WriteLine("parse completed.")
     System.Console.WriteLine(tree.ToStringTree(parser))
 
-Try("1 + 2 + 3")
-Try("1 2 + 3")
-Try("1 + +")
+Try("let x = 42")
