@@ -1,11 +1,12 @@
 ﻿grammar FSharp;
 import FSharpLex;
 
-EQUALS: '=';
-INT: DIGIT_CHAR+;
+// EQUALS: '=';
+// INT: DIGIT_CHAR+;
 
-binding: LET IDENT EQUALS INT;
-file: binding+;
+// binding: LET IDENT EQUALS INT;
+binding: LET Identifier '=' (CharacterLiteral | RegularStringLiteral);
+implementationFile: binding+;
 
 // file : expression (SEMI expression)* EOF;
 // expression : expression POW expression | expression (TIMES | DIV) expression | expression (PLUS | MINUS) expression | LPAREN expression RPAREN | (PLUS | MINUS)* atom ;

@@ -95,21 +95,38 @@ TRAIT: 'trait';
 VIRTUAL: 'virtual';
 VOLATILE: 'volatile';
 
-// Ident (§3.4)
-IDENT: IDENT_TEXT | '``' ( ~[`\n\r\t] | '`' ~[`\n\r\t] )+ '``';
-RESERVED_IDENT: IDENT_TEXT [!*];
+Identifier: IdentifierName | '``' ('`'? ~[`\n\r\t])+ '``';
+ReservedIdent: IdentifierName [!*];
 
+CharacterLiteral:
+    '\'' (SingleQuotationMarkEscapeSequence | GeneralEscapeSequence | ~[\n\r\t\b\f\u0007\u000b']) '\'';
+RegularStringLiteral:
+    '"' (DoubleQuotationMarkEscapeSequence | GeneralEscapeSequence | ~[\n\r\t\b\f\u0007\u000b"])* '"';
 
+fragment Alert: '\u0007';
+fragment LineTabulation: '\u000b';
+fragment ControlCharacter: [\n\r\t\b\f\u0007\u000b];
+fragment GeneralEscapeSequence:
+    ControlCharacterEscapeSequence | BackslashEscapeSequence | TrigraphEscapeSequence
+    | UnicodeEscapeSequence | LongUnicodeEscapeSequence;
+fragment ControlCharacterEscapeSequence: '\\' [nrbtfav];
+fragment BackslashEscapeSequence: '\\\\';
+fragment SingleQuotationMarkEscapeSequence: '\\\'';
+fragment DoubleQuotationMarkEscapeSequence: '\\"';
+fragment TrigraphEscapeSequence: '\\' Digit Digit Digit;
+fragment UnicodeEscapeSequence: '\\u' HexDigit HexDigit HexDigit HexDigit;
+fragment LongUnicodeEscapeSequence: '\\U' HexDigit HexDigit HexDigit HexDigit;
+fragment Digit: [0-9];
+fragment HexDigit: [0-9] | [A-F] | [a-f];
+fragment Letter: [\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}];
+fragment ConnectingChar:  [\p{Pc}];
+fragment CombiningChar: [\p{Mn}\p{Mc}];
+fragment FormattingChar: [\p{Cf}];
+fragment IdentStartChar: Letter | '_';
+fragment IdentChar: Letter | Digit | ConnectingChar | CombiningChar | FormattingChar | '\'' | '_';
+fragment IdentifierName: IdentStartChar IdentChar*;
 
-
-fragment DIGIT_CHAR: [0-9];
-fragment LETTER_CHAR: [\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}];
-fragment CONNECTING_CHAR:  [\p{Pc}];
-fragment COMBINING_CHAR: [\p{Mn}\p{Mc}];
-fragment FORMATTING_CHAR: [\p{Cf}];
-fragment IDENT_START_CHAR: LETTER_CHAR | '_';
-fragment IDENT_CHAR: LETTER_CHAR | DIGIT_CHAR | CONNECTING_CHAR | COMBINING_CHAR | FORMATTING_CHAR | '\'' | '_';
-fragment IDENT_TEXT: IDENT_START_CHAR IDENT_CHAR*;
-WS : [ \r\n]+ -> channel(HIDDEN);
+WSx : [ \r\n]+ -> skip;  // just to get some first parse results
+// WS : [ \r\n]+ -> channel(HIDDEN);  // just to get some first parse results
 
 
