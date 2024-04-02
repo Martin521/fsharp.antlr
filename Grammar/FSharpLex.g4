@@ -95,7 +95,52 @@ TRAIT: 'trait';
 VIRTUAL: 'virtual';
 VOLATILE: 'volatile';
 
-Identifier: IdentifierName | '``' ('`'? ~[`\n\r\t])+ '``';
+// Symbolic keywords
+LETBANG: 'let!';
+USEBANG: 'use!';
+DOBANG: 'do!';
+YIELDBANG: 'yield!';
+RETURNBANG: 'return!';
+PIPE: '|';
+FUNARROW: '->';
+ASSIGNARROW: '<-';
+DOT: '.';
+COLON: ':';
+LPAREN: '(';
+RPAREN: ')';
+LBRACK: '[';
+RBRACK: ']';
+ATTROPEN: '[<';
+ATTRCLOSE: '>]';
+ARROPEN: '[|';
+ARRCLOSE: '|]';
+LBRACE: '{';
+RBRACE: '}';
+QUOTE: '\'';
+HASH: '#';
+DOWNCASTOP: ':?>';
+TYPETEST: ':?';
+UPCASTOP: ':>';
+RANGE: '..';
+CONS: '::';
+REFASSIGN: ':=';
+FRAGSEP: ';;';
+SEP: ';';
+EQUALS: '=';
+UNDERLINE: '_';
+//QMARK: '?';
+DQMARK: '??';
+MULTOP: '(*)';
+LQUOT: '<@';
+RQUOT: '@>';
+LQUOTU: '<@@';
+RQUOTU: '@@>';
+
+fragment FirstOpChar: [!%&*+-./<=>@^|~];
+fragment OpChar: FirstOpChar | '?';
+SymbolicOperator:  '?' | '?<-' | FirstOpChar OpChar*;
+
+Ident: IdentifierName | '``' ('`'? ~[`\n\r\t])+ '``';
 ReservedIdent: IdentifierName [!*];
 
 CharacterLiteral:
@@ -126,7 +171,8 @@ fragment IdentStartChar: Letter | '_';
 fragment IdentChar: Letter | Digit | ConnectingChar | CombiningChar | FormattingChar | '\'' | '_';
 fragment IdentifierName: IdentStartChar IdentChar*;
 
-WSx : [ \r\n]+ -> skip;  // just to get some first parse results
-// WS : [ \r\n]+ -> channel(HIDDEN);  // just to get some first parse results
+// WSx : [ \r\n]+ -> skip;  // just to get some first parse results
+WS : [ \r\n]+ -> channel(HIDDEN);  // just to get some first parse results
+Comment: '//' ~[\r\n]* -> channel(HIDDEN);
 
 

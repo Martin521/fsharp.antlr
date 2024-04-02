@@ -5,8 +5,35 @@ import FSharpLex;
 // INT: DIGIT_CHAR+;
 
 // binding: LET IDENT EQUALS INT;
-binding: LET Identifier '=' (CharacterLiteral | RegularStringLiteral);
-implementationFile: binding+;
+// binding: 'let' Ident '=' (CharacterLiteral | RegularStringLiteral);
+implementationFile:
+    namedModule
+    // | namespaceDeclarationGroup
+    // | anonymousModule
+    ;
+namedModule: 'module' longIdent moduleElem*;
+moduleElem:
+    moduleFunctionOrValueDefn
+    // | typeDefns
+    // | exceptionDefn
+    // | moduleDefn
+    // | moduleAbbrev
+    // | importDecl
+    // | compilerDirectiveDecl
+    ;
+moduleFunctionOrValueDefn:
+    valueDefn
+    // | attributesopt let function-defn
+    // | attributesopt let value-defn
+    // | attributesopt let recopt function-or-value-defns
+    // | attributesopt do expr
+    ;
+valueDefn:
+    'let' Ident  '=' expr
+    // mutableopt accessopt pat typar-defnsopt return-typeopt = expr
+    ;
+longIdent: Ident ('.' Ident)*;
+expr: RegularStringLiteral;
 
 // file : expression (SEMI expression)* EOF;
 // expression : expression POW expression | expression (TIMES | DIV) expression | expression (PLUS | MINUS) expression | LPAREN expression RPAREN | (PLUS | MINUS)* atom ;
