@@ -11,9 +11,9 @@
       "integrity": "sha256:5f3ec36d8accba9f48f5b37f8df6555fe1d62f2561f10eeb3641c1aa808a91cd"
     },
     "ghcr.io/devcontainers/features/powershell:1": {
-      "version": "1.3.4",
-      "resolved": "ghcr.io/devcontainers/features/powershell@sha256:3645db9e9598f04fc405c8c38aac0d60561b5697cc2268f801ff88f0afe0ca6c",
-      "integrity": "sha256:3645db9e9598f04fc405c8c38aac0d60561b5697cc2268f801ff88f0afe0ca6c"
+      "version": "1.4.0",
+      "resolved": "ghcr.io/devcontainers/features/powershell@sha256:de14707bd133d9634cb85f5502aac96e1d0f477b015e23db6185833f5c6fcec6",
+      "integrity": "sha256:de14707bd133d9634cb85f5502aac96e1d0f477b015e23db6185833f5c6fcec6"
     }
   }
 }
